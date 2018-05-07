@@ -1,0 +1,79 @@
+<html ng-app="myApp" >
+    <head>
+        <title> AngularJS </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+         <script src = "app.js">
+             </script>
+             <style>
+                 i{
+                     font-size: 20px;
+                 }
+                 #maindiv{
+                     width:40%; 
+                     margin:0 auto;
+                 }
+                
+                 @media (max-width:900px) and (min-width:501px) {
+                    #maindiv {
+                             width: 70%;
+                    }
+                 }
+                 @media (max-width:500px) and (min-width:200px) {
+                    #maindiv {
+                             width: 80%;
+                    }
+                 }
+                 </style>
+
+    </head>
+<body>
+<div class="container">
+    <div ng-controller="myController" ng-init="getdata()">
+        <h1 style="text-align:center;">  Shopping Cart </h1><br/>
+        <div class="panel panel-success" id = "maindiv">
+            <div class="panel-heading">
+                <form >
+                    <input type=" text" 
+                        class="form-control" 
+                        style="width:90%;" 
+                        ng-model="newItem" 
+                        placeholder="Add items to your cart.."/>
+                   <br/> 
+                    <button 
+                        class="btn btn-primary" 
+                        ng-if="showaddbutton" 
+                        ng-click="addItem(newItem)">Add Item 
+                    </button>
+                    
+                    <button 
+                        class="btn btn-primary"
+                        ng-if="!showaddbutton" 
+                        ng-click="updateviabutton(newItem)">Update Item 
+                    </button>
+                </form>
+                {{errormsg}}
+            </div>
+            
+            <div class="panel-body" >
+                
+                <div class="well well-sm"  ng-repeat="item in ItemList" >{{item}}   
+                    <i 
+                        class="glyphicon glyphicon-remove"
+                        style="float:right;" 
+                        ng-click="removeItem(this)">
+                    </i>
+                    <i 
+                        class="glyphicon glyphicon-edit"
+                        style="float:right;"
+                        ng-click="editItem(this)">
+                        &nbsp;
+                    </i>
+                </div>
+                      
+             </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
